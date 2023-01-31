@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, File
 import shutil
 import os
-import random
+import loadandpredict
 
 app=FastAPI()
 
@@ -15,5 +15,6 @@ async def root(file: UploadFile = File(...)):
         shutil.copyfileobj(file.file,buffer)
         shutil.move(file.filename,"./uploadedImages")
         print('Image was uploaded: ',file.filename)
+        print(loadandpredict.predict())
         shutil.rmtree('./uploadedImages')
-    return {"file_name":file.filename}
+    return {"class":file.filename}
