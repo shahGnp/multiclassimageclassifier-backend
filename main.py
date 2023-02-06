@@ -15,6 +15,7 @@ async def root(file: UploadFile = File(...)):
         shutil.copyfileobj(file.file,buffer)
         shutil.move(file.filename,"./uploadedImages")
         print('Image was uploaded: ',file.filename)
-        print(loadandpredict.predict())
+        prediction=loadandpredict.predict()
+        print(prediction)
         shutil.rmtree('./uploadedImages')
-    return {"class":file.filename}
+    return {"class":prediction}
