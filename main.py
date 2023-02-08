@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, File
 import shutil
 import os
-import app.loadandpredict as loadandpredict
+import loadandpredict as loadandpredict
 
 app=FastAPI()
 
