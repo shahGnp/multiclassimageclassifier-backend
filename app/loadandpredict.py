@@ -43,7 +43,7 @@ def create_cnn_model():
 
 def loadModel():
     Loaded_model=create_cnn_model()
-    Loaded_model.load_weights('./model/model.h5')
+    Loaded_model.load_weights('./app/model/model.h5')
     Loaded_model.summary()
     return Loaded_model
 
