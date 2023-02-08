@@ -8,20 +8,33 @@ import cv2
 
 def create_cnn_model():  
 
-    model=tf.keras.models.Sequential() #if imported from tensorflow.keras import models we would write models.Sequential
+    model=tf.keras.models.Sequential()
+    model.add(tf.keras.layers.Conv2D(32,(3,3),activation='relu',padding='same', input_shape=(32,32,3)))
+    model.add(tf.keras.layers.BatchNormalization())
     
-    model.add(tf.keras.layers.Conv2D(64,(3,3),activation='relu',input_shape=(32,32,3)))
+    model.add(tf.keras.layers.Conv2D(64,(3,3),activation='relu',padding='same'))
+    model.add(tf.keras.layers.BatchNormalization())
     model.add(tf.keras.layers.MaxPool2D((2,2)))
-    model.add(tf.keras.layers.Conv2D(64,(3,3),activation='relu'))
+    
+    model.add(tf.keras.layers.Conv2D(128,(3,3),activation='relu',padding='same'))
+    model.add(tf.keras.layers.BatchNormalization())
+    model.add(tf.keras.layers.Conv2D(128,(3,3),activation='relu',padding='same'))
+    model.add(tf.keras.layers.BatchNormalization())
     model.add(tf.keras.layers.MaxPool2D((2,2)))
-    model.add(tf.keras.layers.Conv2D(128,(3,3),activation='relu'))
-    model.add(tf.keras.layers.Conv2D(64,(3,3),activation='relu'))
-
+    
+    model.add(tf.keras.layers.Conv2D(256,(3,3),activation='relu',padding='same'))
+    model.add(tf.keras.layers.BatchNormalization())
+    model.add(tf.keras.layers.Conv2D(256,(3,3),activation='relu',padding='same'))
+    model.add(tf.keras.layers.BatchNormalization())
+    model.add(tf.keras.layers.MaxPool2D((2,2)))
     
     model.add(tf.keras.layers.Flatten())
-    model.add(tf.keras.layers.Dense(64,activation='relu'))
-    model.add(tf.keras.layers.Dense(128,activation='relu'))
-    model.add(tf.keras.layers.Dense(64,activation='relu'))
+    model.add(tf.keras.layers.Dense(1024,activation='relu'))
+    model.add(tf.keras.layers.Dense(2048,activation='relu'))
+    model.add(tf.keras.layers.Dense(1024,activation='relu'))
+    model.add(tf.keras.layers.Dropout(0.5))
+    model.add(tf.keras.layers.Dense(512,activation='relu'))
+    model.add(tf.keras.layers.Dropout(0.5))
     model.add(tf.keras.layers.Dense(10,activation='softmax'))
     
     # opt = tf.keras.optimizers.Adam(learning_rate=0.0001)
