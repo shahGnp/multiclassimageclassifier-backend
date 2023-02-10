@@ -8,6 +8,7 @@ import cv2
 
 def create_cnn_model():  
 
+    
     model=tf.keras.models.Sequential()
     model.add(tf.keras.layers.Conv2D(32,(3,3),activation='relu',padding='same', input_shape=(32,32,3)))
     model.add(tf.keras.layers.BatchNormalization())
@@ -37,14 +38,13 @@ def create_cnn_model():
     model.add(tf.keras.layers.Dropout(0.5))
     model.add(tf.keras.layers.Dense(10,activation='softmax'))
     
-    opt = tf.keras.optimizers.Adam(learning_rate=0.001)
-    model.compile(optimizer=opt,loss='categorical_crossentropy',metrics=['accuracy'])
+    opt = tf.keras.optimizers.Adam(learning_rate=0.0001)
+    model.compile(optimizer=tf.keras.optimizers.Adam(),loss='categorical_crossentropy',metrics=['accuracy'])
     return model
 
 def loadModel():
     Loaded_model=create_cnn_model()
     Loaded_model.load_weights('./model/model.h5')
-    Loaded_model.summary()
     return Loaded_model
 
 def openImage():
