@@ -37,8 +37,8 @@ def create_cnn_model():
     model.add(tf.keras.layers.Dropout(0.5))
     model.add(tf.keras.layers.Dense(10,activation='softmax'))
     
-    # opt = tf.keras.optimizers.Adam(learning_rate=0.0001)
-    model.compile(optimizer=tf.keras.optimizers.Adam(),loss='categorical_crossentropy',metrics=['accuracy'])
+    opt = tf.keras.optimizers.Adam(learning_rate=0.001)
+    model.compile(optimizer=opt,loss='categorical_crossentropy',metrics=['accuracy'])
     return model
 
 def loadModel():
