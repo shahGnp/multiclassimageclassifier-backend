@@ -6,9 +6,7 @@ import os
 from keras.preprocessing import image
 import cv2
 
-def create_cnn_model():  
-
-    
+def create_cnn_model():
     model=tf.keras.models.Sequential()
     model.add(tf.keras.layers.Conv2D(32,(3,3),activation='relu',padding='same', input_shape=(32,32,3)))
     model.add(tf.keras.layers.BatchNormalization())
@@ -65,8 +63,6 @@ def predict():
         return (labels[np.argmax(model.predict(openImage()))])
     except Exception as e:
         print('Error occured',e)
-
-
 
 if __name__=='main':
     print('I am main module now')
