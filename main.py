@@ -4,11 +4,20 @@ import os
 import loadandpredict as loadandpredict
 from pydantic import BaseModel
 import createImage
+from fastapi.middleware.cors import CORSMiddleware
 
 class req(BaseModel):
     imgstr: str
 
 app=FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # @app.post("/")
 # async def root(file: UploadFile = File(...)):
