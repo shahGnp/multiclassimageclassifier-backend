@@ -44,4 +44,4 @@ async def root(req: req):
         prediction=loadandpredict.predict()
         print(prediction)
         shutil.rmtree('./uploadedImages')
-        return {"class":prediction}
+        return {"classType":prediction}
