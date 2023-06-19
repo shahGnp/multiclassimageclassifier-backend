@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 from keras.preprocessing import image
-import cv2
+# import cv2
 
 def create_cnn_model():
     model=tf.keras.models.Sequential()
